@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Stock Market Predictions</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- graph lib-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Day');
+      data.addColumn('number', 'Index');
+      data.addRows([
+             {%- for ind in dse %}
+                ['{{ ind[0] }}', {{ ind[1] }}],
+                {%- endfor %}
+        ]);
+      var options = {
+        title: '',
+        hAxis: {title: 'Index of DSE',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_dse'));
+      chart.draw(data, options);
+    }
+
+    function drawChart2() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Day');
+      data.addColumn('number', 'Index');
+      data.addRows([
+             {%- for ind in cse %}
+                ['{{ ind[0] }}', {{ ind[1] }}],
+                {%- endfor %}
+        ]);
+      var options = {
+        title: '',
+        hAxis: {title: 'Index of CSE',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_cse'));
+      chart.draw(data, options);
+    }
+
+
+//working with accept warning
+function acceptedFunc(){
+window.location.href = "/prediction";
+}
+
+  </script>
+  <style>
+  .button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+  .graph{
+width: 900px;
+margin: 0 auto;
+  }
+/* for search anim^^ */
+input[type=text] {
+    width: 250px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    margin:2px;
+    background-color: white;
+    background-position: 8px 8px; 
+    background-repeat: no-repeat;
+    padding: 12px 15px 12px 15px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+body{
+
+background-image:url(static/bg.png); 
+
+}
+
+input[type=text]:focus {
+    width: 450px;
+}
+/* for search anim^^ */
+  /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+  .navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+  }
+
+  /* Remove the jumbotron's default bottom margin */ 
+  .jumbotron {
+    margin-bottom: 0;
+  }
+
+  /* Add a gray background color and some padding to the footer */
+  footer {
+    background-color: #f2f2f2;
+    padding: 8px;
+  }
+ul li {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+ul li:hover {
+	margin-top: 2px;
+    background-color: #1E90FF; /* Green */
+    color: white;
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div class="container">
+  <!-- Modal for confirmation -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title " style="text-align: center;">Disclaimer</h2>
+        </div>
+        <div class="modal-body">
+<div class="modal-body center-block ">
+              <h3>This site is a prediction data based on past flows and history. Don't take it for granted. And we are not responsible for an investment loss or any inconvenience.<h3>
+             </div>        </div>
+        <div class="modal-footer">
+       
+          <button type="button" class="btn btn-default"
+          style ="background-color:green;color:white;" onclick="acceptedFunc()">Accept</button>
+             <button type="button" class="btn btn-default" 
+             style ="background-color:red;color:white;"
+             data-dismiss="modal">Deny</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+
+        <a class="navbar-brand" href="#" style="color:#1E90FF;"> Stock Market Preditions &nbsp;&nbsp;
+        </a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active" style="margin-top:3px;"><a href="/"><span class="glyphicon glyphicon-home"> Home</a></li>
+
+            <li ><a href="" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-flash"></i>
+            Predictions</a></li>
+            <li ><a href="/about" ><i class="glyphicon glyphicon-info-sign"></i>
+            About</a></li>
+          </ul>
+
+                 <ul>
+<form action="/search" method=['POST'] style="float:right;">
+  <input type="text" name="search" placeholder="Search...">
+</form></ul>
+        </div>
+             
+
+      </div>
+    </nav>
+<div class="graph">
+    <h1 align="center" style="color:white;" >Graph: DSE</h1>
+    <div id="chart_dse" style="width: 100%; height: 500px;"></div>
+</div>
+<div class="graph">
+    <h1 align="center" style="color:white;">Graph: CSE</h1>
+    <div id="chart_cse" style="width: 100%; height: 500px;"></div>
+</div>
+<br><br><br>
+
+    <footer class="container-fluid text-center">
+      <p>&copy; &nbsp;&nbsp; Stock Exchange Predictions LTD.</p>  
+    </footer>
+
+  </body>
+  </html>
+

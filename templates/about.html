@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Stock Market Predictions</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- graph lib-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Rate'],
+        ['2010',  1000],
+        ['2011',  117],
+        ['2012',  660],
+        ['2013',  1000],
+        ['2014',  117],
+        ['2015',  660],
+        ['2016',  103]
+        ]);
+
+      var options = {
+        title: '',
+        hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_dse'));
+      chart.draw(data, options);
+    }
+
+    function drawChart2() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Rate'],
+        ['2013',  555],
+        ['2014',  400],
+        ['2015',  660],
+        ['2016',  600]
+        ]);
+
+      var options = {
+        title: '',
+        hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_cse'));
+      chart.draw(data, options);
+    }
+
+
+
+  </script>
+  <style>
+  .graph{
+width: 900px;
+margin: 0 auto;
+  }
+/* for search anim^^ */
+input[type=text] {
+    width: 250px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    margin:2px;
+    background-color: white;
+    background-position: 8px 8px; 
+    background-repeat: no-repeat;
+    padding: 12px 15px 12px 15px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+body{
+
+background-image:url(static/bg.png); 
+
+}
+
+input[type=text]:focus {
+    width: 450px;
+}
+/* for search anim^^ */
+  /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+  .navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+  }
+
+  /* Remove the jumbotron's default bottom margin */ 
+  .jumbotron {
+    margin-bottom: 0;
+  }
+
+  /* Add a gray background color and some padding to the footer */
+  footer {
+    background-color: #f2f2f2;
+    padding: 8px;
+  }
+ul li {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+ul li:hover {
+	margin-top: 2px;
+    background-color: #1E90FF; /* Green */
+    color: white;
+}
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+
+        <a class="navbar-brand" href="#" style="color:#1E90FF;"> Stock Market Preditions &nbsp;&nbsp;
+        </a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li  style="margin-top:3px;"><a href="/"><span class="glyphicon glyphicon-home"> Home</a></li>
+
+            <li><a href="/prediction" ><i class="glyphicon glyphicon-flash"></i>
+            Prediction</a></li>
+            <li class="active"><a href="#" ><i class="glyphicon glyphicon-info-sign"></i>
+            About</a></li>
+          </ul>
+
+                 <ul>
+                  <form action="/search" method=['POST'] style="float:right;">
+                    <input type="text" name="search" placeholder="Search...">
+</form></ul>
+        </div>
+             
+
+      </div>
+    </nav>
+
+<h1 style="text-align: center;color: white;">About</h1>
+<p style="text-align: center;color: white; padding: 20px;">
+
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum Lorem ipsum cuet ipsum 
+
+</p>
+
+<br><br><br>
+
+    <footer class="container-fluid text-center footer">
+      <p>&copy; &nbsp;&nbsp; Stock Exchange Predictions LTD.</p>  
+    </footer>
+
+  </body>
+  </html>
+

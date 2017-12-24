@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Stock Market Predictions</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="jquery-3.2.1.min.js"></script>
+  <!-- graph lib-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Rate'],
+        ['2010',  1000],
+        ['2011',  117],
+        ['2012',  660],
+        ['2013',  1000],
+        ['2014',  117],
+        ['2015',  660],
+        ['2016',  103]
+        ]);
+
+      var options = {
+        title: '',
+        hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+      };
+
+  //    var chart = new google.visualization.AreaChart(document.getElementById('chart_dse'));
+  chart.draw(data, options);
+}
+
+function drawChart2() {
+  var data = google.visualization.arrayToDataTable([
+    ['Year', 'Rate'],
+    ['2013',  555],
+    ['2014',  400],
+    ['2015',  660],
+    ['2016',  600]
+    ]);
+
+  var options = {
+    title: '',
+    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+    vAxis: {minValue: 0}
+  };
+
+//      var chart = new google.visualization.AreaChart(document.getElementById('chart_cse'));
+chart.draw(data, options);
+}
+
+$(document).ready(function(){
+  $('#overlay').modal('show');
+
+  setTimeout(function() {
+    $('#overlay').modal('hide');
+  }, 10000);
+   // jQuery methods go here...
+
+ }); 
+
+</script>
+<style>
+tr,td,table,label{
+color: white;
+}
+th{
+  text-align: center;
+}
+
+/*selection areaa*/
+.wrapper{width:100%;}
+.box{float:left; height:100%;}
+.box:nth-child(1){
+   width:20%;
+margin-left: 2%;
+}
+.box:nth-child(2){
+   width:78%;
+  
+}
+
+/*ending*/
+
+
+.graph{
+  width: 900px;
+  margin: 0 auto;
+}
+/* for search anim^^ */
+input[type=text] {
+  width: 250px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  margin:2px;
+  background-color: white;
+  background-position: 8px 8px; 
+  background-repeat: no-repeat;
+  padding: 12px 15px 12px 15px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+body{
+
+  background-image:url(static/bg.png); 
+
+}
+
+input[type=text]:focus {
+  width: 450px;
+}
+/* for search anim^^ */
+/* Remove the navbar's default rounded borders and increase the bottom margin */ 
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+}
+
+/* Remove the jumbotron's default bottom margin */ 
+.jumbotron {
+  margin-bottom: 0;
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+  background-color: #f2f2f2;
+  padding: 8px;
+}
+ul li {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+ul li:hover {
+	margin-top: 2px;
+  background-color: #1E90FF; /* Green */
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+
+        <a class="navbar-brand" href="#" style="color:#1E90FF;"> Stock Market Preditions &nbsp;&nbsp;
+        </a>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li ><a href="/"><span class="glyphicon glyphicon-home"> Home</a></li>
+
+            <li class="active" style="margin-top:3px;"><a href="/prediction" ><i class="glyphicon glyphicon-flash"></i>
+            Prediction</a></li>
+            <li ><a href="/about" ><i class="glyphicon glyphicon-info-sign"></i>
+            About</a></li>
+          </ul>
+
+          <ul>
+            <form action="/search" method=['POST'] style="float:right;">
+              <input type="text" name="search" placeholder="Search...">
+            </form></ul>
+          </div>
+
+
+        </div>
+      </nav>
+<!-- selecting options -->
+  <div class="wrapper">
+
+    <div class="box" style="border:2px solid white; padding:35px 30px ;border-radius: 5px;text-align: left;">
+
+<form action="/prediction" id="userentry" method="POST">
+<div class="form-group">
+      <label for="type">Stock market</label>
+      <select class="form-control" style="width: 78%;text-align:center;" name="market" id="market">
+        <option value="dse">DSE</option>
+        <option value="cse">CSE</option>
+      </select>
+      <label for="type">Type</label>
+      <select class="form-control" style="width: 78%;text-align:center;" name="type" id="type">
+        <option value="general">General</option>
+        <option value="featured">Featured/Reputed</option>
+      </select>
+      <br><hr  style="margin-right:22%">
+      <label for="radio">Select  Price Range</label>
+      <div class="radio">
+        <label><input type="radio" name="optradio" value="0" checked="checked"> None </label>
+      </div>
+         <div class="radio">
+      <label><input type="radio" name="optradio" value="1"> 0 - 50 </label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" value="2"> 50 - 100 </label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" value="3"> 100 - 150 </label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" value="4"> 150 - 200 </label>
+    </div>
+ <br>
+    <input type="Submit" style="color:white; background-color:#1E90FF;font-size:20px;border-radius:20px;" name="Submit" value="Submit">
+  </div>
+<!-- ending input-justify -->
+  </form>
+    </div>
+
+    <div class="box" style="height:500px;overflow-y:scroll;overflow-x: auto;">
+
+<div class="container">
+  <h2 style="color:white;">Data Table</h2>
+  <table class="table table-bordered" style="width: 90%;">
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Stat</th>
+        <th>Item Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rows in result %}
+      {% if ress[rows[0]] != null %}
+      <tr>
+        <td>{{rows[0]}}</td>
+        <td>{{rows[1]}}</td>
+        <td>{{ress[rows[0]]}}</td>
+      </tr>
+      {% endif %}
+      {%endfor%}
+      
+    </tbody>
+  </table>
+</div>
+    </div>
+
+    </div>
+
+
+
+
+      <!-- modal stuffs  -->
+      <div class="modal fade" id="overlay" style=" margin-top:120px;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h1 class="modal-title" style="text-align: center; color: red;font-weight: bold;">Caution!</h1>
+            </div>
+            <div class="modal-body center-block ">
+              <h3>This site is a prediction data based on past flows and history. Don't take it for granted. And we are not responsible for an investment loss or any inconvenience.<h3>
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <br><br><br>
+
+
+    
+    </body>
+    </html>
+
